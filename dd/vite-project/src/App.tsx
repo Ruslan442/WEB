@@ -5,6 +5,7 @@ import Users from "./components/Navbar/User";
 import Contact from "./components/Navbar/Contact";
 import About from "./components/Navbar/About";
 import Pagination from "./components/Navbar/Pagination";
+import Form from "./components/Navbar/Form";
 
 type AuthContextType = {
   isAuthenticated: boolean; // флаг, показывающий, аутентифицирован ли пользователь
@@ -38,6 +39,8 @@ function App() {
       <Link to={'contact'}>Contact  </Link>
      
       <Link to={'pagination'}>Pagination  </Link>
+
+      <Link to={'form'}>Form  </Link>
       <button onClick={() => changeTheme()}>  Сменить тему  </button>
       <button type={'button'} onClick={() => {
         isAuthenticated === true ?
@@ -52,6 +55,7 @@ function App() {
           <Route path="/users" Component={Users} />
         </Route>  
         <Route path="/contact" Component={Contact} />
+        <Route path="/form" Component={Form} />
         <Route path="/pagination" Component={Pagination} />
       </Routes>
       </AuthContext.Provider>  
