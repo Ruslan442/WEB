@@ -20,9 +20,17 @@ const AuthContext = createContext<AuthContextType>({
 function App() {
   const [isAuthenticated, setAuth] = useState<boolean>(false);
 
+  const [currentTheme, setCurrentTheme] = useState<"dark" | "light">('dark')
+
+  const changeTheme = () => {
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
+      document.documentElement.setAttribute('data-theme', newTheme)
+      setCurrentTheme(newTheme);
+  }
+
   return (
     <> 
-
+      <div className="nav">
       <Link to={'about'}>About  </Link>
   
       <Link to={'users'}>Users  </Link>
@@ -30,18 +38,19 @@ function App() {
       <Link to={'contact'}>Contact  </Link>
      
       <Link to={'pagination'}>Pagination  </Link>
+      <button onClick={() => changeTheme()}>  Сменить тему  </button>
       <button type={'button'} onClick={() => {
         isAuthenticated === true ?
         setAuth(false):setAuth(true)}}>{isAuthenticated === true ? 'Выйти':'Войти'}
       </button>
       <br></br>
-     
+     </div>
       <AuthContext.Provider value={{ isAuthenticated, setAuth }}>
       <Routes>
         <Route path="/about" Component={About} />
         <Route element={<PrivateRoute />}>
           <Route path="/users" Component={Users} />
-        </Route>
+        </Route>  
         <Route path="/contact" Component={Contact} />
         <Route path="/pagination" Component={Pagination} />
       </Routes>
