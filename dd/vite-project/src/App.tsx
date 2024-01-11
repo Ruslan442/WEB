@@ -29,6 +29,10 @@ function App() {
       setCurrentTheme(newTheme);
   }
 
+  const changeAuth = () =>{
+    setAuth(!isAuthenticated);
+  }
+
   return (
     <> 
       <div className="nav">
@@ -42,9 +46,7 @@ function App() {
 
       <Link to={'form'}>Form  </Link>
       <button onClick={() => changeTheme()}>  Сменить тему  </button>
-      <button type={'button'} onClick={() => {
-        isAuthenticated === true ?
-        setAuth(false):setAuth(true)}}>{isAuthenticated === true ? 'Выйти':'Войти'}
+      <button type={'button'} onClick={() => changeAuth()}>{isAuthenticated === true ? 'Выйти':'Войти'}
       </button>
       <br></br>
      </div>
